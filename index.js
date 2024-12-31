@@ -24,7 +24,7 @@ const WishEmailRoute = require('./routes/KCMT-SIS/WishEmail/wishEmailRoute');
 // Set Path for All Applications-------------------------->
 
 
-app.use('/duggu-api', WishEmailRoute);
+app.use('/api', WishEmailRoute);
 
 
 // Root API endpoint
