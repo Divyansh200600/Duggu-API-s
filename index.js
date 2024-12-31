@@ -9,16 +9,9 @@ dotenv.config();
 const app = express();
 const port = 3001;
 
-// Configure CORS options
-const corsOptions = {
-  origin: ['http://localhost:3000'], // Allow specific frontend domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-  credentials: true, // Allow credentials if needed
-};
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Allow preflight requests for all routes
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
