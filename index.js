@@ -9,9 +9,12 @@ dotenv.config();
 const app = express();
 const port = 3001;
 
-
-
-app.use(cors());
+// Configure CORS to allow all origins
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
