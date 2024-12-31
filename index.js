@@ -18,13 +18,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Routes for All Applications------------------------>
 
+// 1. KCMT-SIS
+
 const WishEmailRoute = require('./routes/KCMT-SIS/WishEmail/wishEmailRoute');
 
+// 2. KCMT-DMS
+
+const DepartmentCreateRoute = require('./routes/KCMT-DMS/DepartmentCreate/departmentCreateRoute');
 
 // Set Path for All Applications-------------------------->
 
+// 1. KCMT-SIS
 
-app.use('/api', WishEmailRoute);
+app.use('/duggu-api', WishEmailRoute);
+
+// 2. KCMT-DMS
+
+app.use('/duggu-api', DepartmentCreateRoute);
 
 
 // Root API endpoint
