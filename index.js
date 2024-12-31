@@ -4,7 +4,11 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path'); 
 
-
+const corsOptions = {
+  origin: ['http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
 dotenv.config();
 
@@ -12,7 +16,8 @@ const app = express();
 const port = 3001;
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
