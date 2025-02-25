@@ -3,123 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Duugu ⚡ API's</title>
-  <link rel="icon" type="image/x-icon" href="./favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>Duugu ⚡ API Server Room</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 1rem 2rem;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0a0a0a;
+      color: #0ff;
       text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    main {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #0ff;
     }
-    .api-section {
-      margin-bottom: 2rem;
-      padding: 1.5rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .login-box {
+      background: rgba(0, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #0ff;
+      width: 300px;
     }
-    .api-section h2 {
-      color: #4CAF50;
-      margin-bottom: 0.5rem;
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      outline: none;
+      background: #222;
+      color: #0ff;
+      font-size: 1rem;
+      border-radius: 5px;
     }
-    .api-section p {
-      margin: 0.5rem 0;
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background: #0ff;
+      color: #000;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
     }
-    .api-section a {
-      text-decoration: none;
-      color: #007BFF;
-      font-weight: 500;
+    button:hover {
+      background: #0dd;
     }
-    .api-section a:hover {
-      text-decoration: underline;
+    .hidden {
+      display: none;
     }
-    footer {
-      margin-top: 2rem;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
-    }
-    footer a {
-      color: #007BFF;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
+    .server-room {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0, 255, 255, 0.2);
+      border-radius: 10px;
+      box-shadow: 0 0 15px #0ff;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Welcome to Duugu ⚡ API's</h1>
-</header>
-
-<main>
-  <section class="api-section">
-    <h2>KCMT-SIS: Wish Email API</h2>
-    <p>Send personalized wish emails for birthdays and anniversaries using this API.</p>
-    <p><strong>Endpoint:</strong> <code>/duggu-api/send-wish-email</code></p>
-    <p><strong>Method:</strong> POST</p>
-    <p><strong>Payload:</strong></p>
-    <pre>
-{
-  "email": "example@example.com",
-  "name": "John Doe",
-  "designation": "Software Engineer",
-  "dateOfBirth": "1990-01-01",
-  "dateOfAnniversary": "2015-06-15"
-}
-    </pre>
-    <p><a href="https://postman.com" target="_blank">Test on Postman →</a></p>
-  </section>
-
-  <section class="api-section">
-    <h2>KCMT-DMS: Department Create API</h2>
-    <p>Manage department creation for your organization efficiently.</p>
-    <p><strong>Endpoint:</strong> <code>/duggu-api/create-department</code></p>
-    <p><strong>Method:</strong> POST</p>
-    <p><strong>Payload:</strong></p>
-    <pre>
-{
-  "departmentName": "Engineering",
-  "departmentId": "ENG-001",
-  "adminName": "Jane Doe"
-}
-    </pre>
-    <p><a href="https://postman.com" target="_blank">Test on Postman →</a></p>
-  </section>
-</main>
-
-<footer>
-  <p>&copy; <span id="year"></span> Duugu APIs. All rights reserved.</p>
-  <p><a href="https://github.com" target="_blank">GitHub</a> | <a href="https://contact.example.com" target="_blank">Contact Us</a></p>
-</footer>
-
-<script>
-  // Update the year dynamically
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
+  <div class="container">
+    <h1>Duugu ⚡ API Server Room</h1>
+    <div class="login-box" id="login-box">
+      <p>Enter Access Code:</p>
+      <input type="password" id="password" placeholder="********">
+      <button onclick="authenticate()">Access</button>
+    </div>
+    <div class="server-room hidden" id="server-room">
+      <h2>⚡ Welcome to the API Server Room ⚡</h2>
+      <p>Server Encryption: AES-256 | Status: <span style="color: lime;">Secure</span></p>
+      <button onclick="window.location.href='/landing.html'">Landing Page</button>
+    </div>
+  </div>
+  <script>
+    function authenticate() {
+      const pass = document.getElementById('password').value;
+      const hash = btoa(pass);
+      if (hash === btoa("pookiethehacker")) {
+        document.getElementById('login-box').classList.add('hidden');
+        document.getElementById('server-room').classList.remove('hidden');
+      } else {
+        alert("Access Denied! Incorrect Password.");
+      }
+    }
+  </script>
 </body>
 </html>
