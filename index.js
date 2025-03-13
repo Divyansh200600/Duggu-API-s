@@ -10,7 +10,14 @@ const app = express();
 const port = 3001;
 
 
-app.options('*', cors());
+app.use(
+  cors({
+    origin: "*", 
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -23,6 +30,9 @@ const WishEmailRoute = require('./routes/KCMT-SIS/WishEmail/wishEmailRoute');
 // 2. KCMT-DMS
 const DepartmentCreateRoute = require('./routes/KCMT-DMS/DepartmentCreate/departmentCreateRoute');
 
+// 3. Netflix Definitive Edition
+const authRoutes = require('./routes/Netflix-Definitive/authRoutes');
+
 // Set Path for All Applications-------------------------->
 
 // 1. KCMT-SIS
@@ -30,6 +40,9 @@ app.use('/duggu-api', WishEmailRoute);
 
 // 2. KCMT-DMS
 app.use('/duggu-api', DepartmentCreateRoute);
+
+// 3. Netflix Definitive Edition
+app.use('/auth', authRoutes);
 
 // Root API endpoint
 app.get('/', (req, res) => {
