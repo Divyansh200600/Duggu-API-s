@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix APIs</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Netflix Definitive APIs</h1>
+    <a href="../../landing.html" class="back-btn">⬅ Back</a>
+
+    <div class="api-list">
+      <div class="api-card">
+        <div class="api-title">Register User</div>
+        <div class="endpoint">POST /auth/register</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Payload:</strong>
+          <pre>
+{
+  "name": "Sahil",
+  "email": "sahil@app.in",
+  "password": "securepassword123"
+}
+          </pre>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="api-title">Login User</div>
+        <div class="endpoint">POST /auth/login</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Payload:</strong>
+          <pre>
+{
+  "email": "sahil@app.in",
+  "password": "securepassword123"
+}
+          </pre>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="api-title">Get User</div>
+        <div class="endpoint">GET /auth/user/{userId}</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Example Request:</strong>
+          <pre>
+GET /auth/user/p091pyg
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

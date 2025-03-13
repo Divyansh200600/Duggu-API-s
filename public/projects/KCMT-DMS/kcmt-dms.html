@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KCMT-DMS APIs</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>KCMT-DMS APIs</h1>
+    <a href="../../landing.html" class="back-btn">⬅ Back</a>
+
+    <div class="api-list">
+      <!-- Department Create API -->
+      <div class="api-card">
+        <div class="api-title">Department Create API</div>
+        <div class="endpoint">POST /duggu-api/create-department</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Payload:</strong>
+          <pre>
+{
+  "departmentName": "Engineering",
+  "departmentId": "ENG-001",
+  "adminName": "Jane Doe"
+}
+          </pre>
+        </div>
+      </div>
+
+      <!-- Department Update API -->
+      <div class="api-card">
+        <div class="api-title">Department Update API</div>
+        <div class="endpoint">PUT /duggu-api/update-department</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Payload:</strong>
+          <pre>
+{
+  "departmentId": "ENG-001",
+  "departmentName": "Updated Engineering",
+  "adminName": "John Doe"
+}
+          </pre>
+        </div>
+      </div>
+
+      <!-- Department Delete API -->
+      <div class="api-card">
+        <div class="api-title">Department Delete API</div>
+        <div class="endpoint">DELETE /duggu-api/delete-department/{departmentId}</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Example Request:</strong>
+          <pre>
+DELETE /duggu-api/delete-department/ENG-001
+          </pre>
+        </div>
+      </div>
+
+      <!-- Get Department Details API -->
+      <div class="api-card">
+        <div class="api-title">Get Department Details API</div>
+        <div class="endpoint">GET /duggu-api/get-department/{departmentId}</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Example Request:</strong>
+          <pre>
+GET /duggu-api/get-department/ENG-001
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
