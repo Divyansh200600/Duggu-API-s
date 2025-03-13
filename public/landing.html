@@ -129,6 +129,51 @@
           </pre>
         </div>
       </div>
+
+      <!-- Netflix Definitive Edition APIs -->
+      <div class="api-card">
+        <div class="api-title">Netflix Definitive: Register User</div>
+        <div class="endpoint">POST /auth/register</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Payload:</strong>
+          <pre>
+{
+  "name": "Sahil",
+  "email": "sahil@app.in",
+  "password": "securepassword123"
+}
+          </pre>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="api-title">Netflix Definitive: Login User</div>
+        <div class="endpoint">POST /auth/login</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Payload:</strong>
+          <pre>
+{
+  "email": "sahil@app.in",
+  "password": "securepassword123"
+}
+          </pre>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="api-title">Netflix Definitive: Get User</div>
+        <div class="endpoint">GET /auth/user/{userId}</div>
+        <div class="status">✅ Live</div>
+        <div class="payload">
+          <strong>Example Request:</strong>
+          <pre>
+GET /auth/user/p091pyg
+          </pre>
+        </div>
+      </div>
+
     </div>
   </div>
 

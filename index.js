@@ -42,7 +42,7 @@ app.use('/duggu-api', WishEmailRoute);
 app.use('/duggu-api', DepartmentCreateRoute);
 
 // 3. Netflix Definitive Edition
-app.use('/auth', authRoutes);
+app.use('/duggu-api/auth', authRoutes);
 
 // Root API endpoint
 app.get('/', (req, res) => {
