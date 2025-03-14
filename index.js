@@ -10,11 +10,7 @@ const app = express();
 const port = 3001;
 
 
-app.use(cors({
-  origin: ["http://localhost:3000", "https://netflix-definitive-edition.vercel.app"],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+app.options('*', cors());
 
 
 
