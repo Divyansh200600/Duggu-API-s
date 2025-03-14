@@ -18,6 +18,7 @@ router.get("/user/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
         const user = await User.findOne({ userId }).select("-password");
+        console.log(userId)
 
         if (!user) {
             return res.status(404).json({ success: false, message: "User not found" });
