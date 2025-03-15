@@ -10,11 +10,11 @@ const app = express();
 const port = 3001;
 
 const allowedOrigins = [
-  "https://api-fixer.vercel.app",
   "https://dms-kcmt.netlify.app",
   "https://netflix-definitive-edition.vercel.app",
   "https://sis-kcmt.netlify.app",
-  "http://localhost:3000",
+  "https://duggu-ramz.netlify.app/",
+ 
 ];
 
 app.use(
@@ -57,6 +57,9 @@ app.options("*", (req, res) => {
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+
+// ----------------------------------------------------------------
+
 // ✅ Import API Routes
 
 // 1. KCMT-SIS Route
@@ -68,23 +71,29 @@ const DepartmentCreateRoute = require("./routes/KCMT-DMS/DepartmentCreate/depart
 // 3. Netflix Definitive Edition Route
 const authRoutes = require("./routes/Netflix-Definitive/authRoutes");
 
+// 4. Duggu-Ramz Route
+const shayariRoutes = require("./routes/Duggu-Ramz/shayariRoutes");
+// ----------------------------------------------------------------
+
+
+// ----------------------------------------------------------------
+
 // ✅ Set API Endpoints
 
-// 1. KCMT-SIS Routes
+// 1. KCMT-SIS Endpoints
 app.use("/duggu-api", WishEmailRoute);
 
-// 2. KCMT-DMS Routes
+// 2. KCMT-DMS Endpoints
 app.use("/duggu-api", DepartmentCreateRoute);
 
-// 3. Netflix Definitive Edition Routes
+// 3. Netflix Definitive Edition Endpoints
 app.use("/duggu-api/auth", authRoutes);
 
-app.get("/duggu-api/dummy", (req, res) => {
-  res.json({
-    success: true,
-    message: "Dummy API is working in production mode!",
-  });
-});
+// 4. Duggu-Ramz Endpoints
+app.use("/duggu-api/ramz", shayariRoutes);
+
+// ----------------------------------------------------------------
+
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
