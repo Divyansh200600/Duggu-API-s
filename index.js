@@ -13,7 +13,6 @@ const allowedOrigins = [
   "https://dms-kcmt.netlify.app",
   "https://netflix-definitive-edition.vercel.app",
   "https://sis-kcmt.netlify.app",
-  "https://duggu-ramz.netlify.app",
   "http://localhost:5173",
   "http://localhost:3000"
  
@@ -80,8 +79,7 @@ const DepartmentCreateRoute = require("./routes/KCMT-DMS/DepartmentCreate/depart
 // 3. Netflix Definitive Edition Route
 const authRoutes = require("./routes/Netflix-Definitive/authRoutes");
 
-// 4. Duggu-Ramz Route
-const shayariRoutes = require("./routes/Duggu-Ramz/shayariRoutes");
+
 // ----------------------------------------------------------------
 
 
@@ -98,8 +96,6 @@ app.use("/duggu-api", DepartmentCreateRoute);
 // 3. Netflix Definitive Edition Endpoints
 app.use("/duggu-api/auth", authRoutes);
 
-// 4. Duggu-Ramz Endpoints
-app.use("/duggu-api/ramz", shayariRoutes);
 
 // ----------------------------------------------------------------
 
