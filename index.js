@@ -11,9 +11,9 @@ const port = 3001;
 
 
 const allowedOrigins = [
-  "https://api-fixer.vercel.app",  // ✅ Production Frontend
-  "https://dms-kcmt.netlify.app",  // ✅ Another Allowed Frontend
-  "http://localhost:3000",         // ✅ Local Development
+  "https://api-fixer.vercel.app",
+  "https://dms-kcmt.netlify.app", 
+  "http://localhost:3000",        
 ];
 
 // ✅ Dynamic CORS Configuration
