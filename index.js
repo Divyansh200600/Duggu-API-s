@@ -10,9 +10,26 @@ const app = express();
 const port = 3001;
 
 
+const allowedOrigins = [
+  "https://dms-kcmt.netlify.app",
+  "http://localhost:3000",
+  "https://api-fixer.vercel.app"
+];
+
 app.use(cors({
-    origin:"https://dms-kcmt.netlify.app",
+  origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
+
+app.options('*', cors());
 
 
 
@@ -40,6 +57,15 @@ app.use('/duggu-api', DepartmentCreateRoute);
 
 // 3. Netflix Definitive Edition
 app.use('/duggu-api/auth', authRoutes);
+
+// ✅ Dummy Route to Test API
+app.get('/duggu-api/dummy', (req, res) => {
+  res.json({ 
+      success: true, 
+      message: "Dummy API is working in production mode!" 
+  });
+});
+
 
 // Root API endpoint
 app.get('/', (req, res) => {
