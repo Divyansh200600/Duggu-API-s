@@ -10,7 +10,9 @@ const app = express();
 const port = 3001;
 
 
-app.use(cors());
+app.use(cors({
+    origin:"https://dms-kcmt.netlify.app",
+}));
 
 
 
