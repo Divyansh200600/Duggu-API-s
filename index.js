@@ -11,23 +11,25 @@ const port = 3001;
 
 
 const allowedOrigins = [
-  "https://dms-kcmt.netlify.app",
-  "http://localhost:3000",
-  "https://api-fixer.vercel.app"
+  "https://api-fixer.vercel.app",  // ✅ Your production frontend
+  "https://dms-kcmt.netlify.app",  // ✅ Another allowed frontend
+  "http://localhost:3000",         // ✅ Local development
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-      } else {
-          callback(new Error('Not allowed by CORS'));
-      }
-  },
+  origin: allowedOrigins, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://api-fixer.vercel.app","http://localhost:3000"); 
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 app.options('*', cors());
 
