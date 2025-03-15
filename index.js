@@ -13,7 +13,7 @@ const allowedOrigins = [
   "https://dms-kcmt.netlify.app",
   "https://netflix-definitive-edition.vercel.app",
   "https://sis-kcmt.netlify.app",
-  "https://duggu-ramz.netlify.app/",
+  "https://duggu-ramz.netlify.app",
  
 ];
 
