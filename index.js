@@ -14,6 +14,8 @@ const allowedOrigins = [
   "https://netflix-definitive-edition.vercel.app",
   "https://sis-kcmt.netlify.app",
   "https://duggu-ramz.netlify.app",
+  "http://localhost:5173",
+  "http://localhost:3000"
  
 ];
 
@@ -26,9 +28,9 @@ app.use(
         callback(new Error("CORS policy does not allow this origin!"));
       }
     },
-    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
@@ -52,6 +54,13 @@ app.options("*", (req, res) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.status(204).end();
+});
+
+app.use((req, res, next) => {
+  res.setTimeout(30000, () => { 
+    res.status(504).json({ error: "Server timeout! Try again later." });
+  });
+  next();
 });
 
 app.use(bodyParser.json());
