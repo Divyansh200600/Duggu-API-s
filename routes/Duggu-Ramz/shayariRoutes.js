@@ -3,8 +3,8 @@ const { getShayaris, addShayari, deleteShayari, updateShayari } = require("../..
 
 const router = express.Router();
 
-router.get("/", getShayaris);
-router.post("/", addShayari);
+router.get("/get", getShayaris);
+router.post("/add", addShayari);
 router.delete("/:id", deleteShayari);
 router.put("/:id", updateShayari); 
 
