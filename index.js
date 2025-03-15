@@ -2,21 +2,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const path = require('path');
+const path = require('path'); 
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = 3001;
 
-// ✅ Allowed Frontend Domains
+
 const allowedOrigins = [
-  "https://api-fixer.vercel.app",
-  "https://dms-kcmt.netlify.app",
-  "http://localhost:3000"
+  "https://api-fixer.vercel.app",  // ✅ Production Frontend
+  "https://dms-kcmt.netlify.app",  // ✅ Another Allowed Frontend
+  "http://localhost:3000",         // ✅ Local Development
 ];
 
-// ✅ CORS Middleware
+// ✅ Dynamic CORS Configuration
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -30,10 +30,11 @@ app.use(cors({
   credentials: true
 }));
 
-// ✅ Middleware to Set CORS Headers in All Responses (Avoiding Duplicate Headers)
+// ✅ Middleware to Set CORS Headers in All Responses
 app.use((req, res, next) => {
-  if (allowedOrigins.includes(req.headers.origin)) {
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -42,44 +43,50 @@ app.use((req, res, next) => {
 });
 
 // ✅ Handle Preflight Requests
-app.options('*', (req, res) => {
-  res.sendStatus(204);
-});
+app.options('*', cors());
 
-// ✅ Middleware
+
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ Import Routes
+// Set Routes for All Applications------------------------>
+
+// 1. KCMT-SIS
 const WishEmailRoute = require('./routes/KCMT-SIS/WishEmail/wishEmailRoute');
+
+// 2. KCMT-DMS
 const DepartmentCreateRoute = require('./routes/KCMT-DMS/DepartmentCreate/departmentCreateRoute');
+
+// 3. Netflix Definitive Edition
 const authRoutes = require('./routes/Netflix-Definitive/authRoutes');
 
-// ✅ Set API Routes
+// Set Path for All Applications-------------------------->
+
+// 1. KCMT-SIS
 app.use('/duggu-api', WishEmailRoute);
+
+// 2. KCMT-DMS
 app.use('/duggu-api', DepartmentCreateRoute);
+
+// 3. Netflix Definitive Edition
 app.use('/duggu-api/auth', authRoutes);
 
-// ✅ Dummy Route for Testing
+// ✅ Dummy Route to Test API
 app.get('/duggu-api/dummy', (req, res) => {
   res.json({ 
-    success: true, 
-    message: "✅ Dummy API is working with proper CORS settings!" 
+      success: true, 
+      message: "Dummy API is working in production mode!" 
   });
 });
 
-// ✅ Root Endpoint
+
+// Root API endpoint
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); 
 });
 
-// ✅ Global Error Handling Middleware
-app.use((err, req, res, next) => {
-  console.error("❌ Error:", err.message);
-  res.status(500).json({ success: false, error: err.message });
-});
 
-// ✅ Start Server
 app.listen(port, () => {
-  console.log(`🚀 Server running at http://localhost:${port}`);
+  console.log(`API at http://localhost:${port}`);
 });
