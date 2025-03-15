@@ -1,26 +1,22 @@
-// ✅ Import necessary modules
 const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
 
-// ✅ Load environment variables from .env file
 dotenv.config();
 
-// ✅ Initialize Express app
 const app = express();
 const port = 3001;
 
-// ✅ Define allowed origins for CORS
 const allowedOrigins = [
   "https://api-fixer.vercel.app",
   "https://dms-kcmt.netlify.app",
-  "https://netflix-definitive-edition.vercel.app/",
+  "https://netflix-definitive-edition.vercel.app",
+  "https://sis-kcmt.netlify.app/SIS-login",
   "http://localhost:3000",
 ];
 
-// ✅ Configure CORS middleware
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -36,7 +32,6 @@ app.use(
   })
 );
 
-// ✅ Middleware to Set CORS Headers in All Responses
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
@@ -51,7 +46,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// ✅ Handle Preflight Requests (OPTIONS)
 app.options("*", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -60,7 +54,6 @@ app.options("*", (req, res) => {
   res.status(204).end();
 });
 
-// ✅ Middleware for parsing JSON and serving static files
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -86,7 +79,6 @@ app.use("/duggu-api", DepartmentCreateRoute);
 // 3. Netflix Definitive Edition Routes
 app.use("/duggu-api/auth", authRoutes);
 
-// ✅ Dummy Test Route to check API functionality
 app.get("/duggu-api/dummy", (req, res) => {
   res.json({
     success: true,
@@ -94,15 +86,12 @@ app.get("/duggu-api/dummy", (req, res) => {
   });
 });
 
-// ✅ Serve index.html for the root route
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// ✅ Start the server
 app.listen(port, () => {
   console.log(`API running at http://localhost:${port}`);
 });
 
-// ✅ Export for serverless deployment (e.g., Vercel)
 module.exports = app;
