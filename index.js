@@ -10,7 +10,7 @@ const app = express();
 const port = 3001;
 
 
-app.options('*', cors());
+app.use(cors());
 
 
 
