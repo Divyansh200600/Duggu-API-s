@@ -3,9 +3,9 @@ const { getShayaris, addShayari, deleteShayari, updateShayari } = require("../..
 
 const router = express.Router();
 
-router.get("/get", getShayaris);      
-router.post("/add", addShayari);      
-router.delete("/:id", deleteShayari); 
-router.put("/:id", updateShayari);   
+router.get("/get", getShayaris);
+router.post("/add", addShayari);
+router.delete("/:id", deleteShayari);
+router.put("/:id", updateShayari); 
 
 module.exports = router;
