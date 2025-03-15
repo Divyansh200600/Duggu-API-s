@@ -13,7 +13,7 @@ const allowedOrigins = [
   "https://api-fixer.vercel.app",
   "https://dms-kcmt.netlify.app",
   "https://netflix-definitive-edition.vercel.app",
-  "https://sis-kcmt.netlify.app/SIS-login",
+  "https://sis-kcmt.netlify.app",
   "http://localhost:3000",
 ];
 
