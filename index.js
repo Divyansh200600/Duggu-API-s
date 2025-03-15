@@ -16,6 +16,7 @@ const port = 3001;
 const allowedOrigins = [
   "https://api-fixer.vercel.app",
   "https://dms-kcmt.netlify.app",
+  "https://netflix-definitive-edition.vercel.app/",
   "http://localhost:3000",
 ];
 
